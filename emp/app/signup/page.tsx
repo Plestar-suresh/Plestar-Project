@@ -10,7 +10,6 @@ const SignupPage = () => {
     fullname: '',
     employeeid: '',
     mobileno: '',
-    password: '',
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,17 +70,6 @@ const SignupPage = () => {
             name="mobileno"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             value={formData.mobileno} onChange={handleChange}
-          />
-
-          <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={formData.password} onChange={handleChange}
           />
           <button
             type="submit"
