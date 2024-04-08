@@ -68,44 +68,39 @@ const SignupPage = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <form className="w-96" onSubmit={handleSubmit}>
-        <a className="flex flex-wrap content-center justify-center">
-          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
-        </a>
-
-        <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
-          Password
-        </label>
+    <div className="container mx-auto max-w-lg mt-10">
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 className="text-2xl font-bold mb-6 text-center">Confirm Password</h2>
+      <div className="mb-4">
+        <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
         <input
           type="password"
           id="password"
           name="password"
-          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChangePassword}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="Enter password"
         />
-
-        <label htmlFor="confirmPassword" className="block mt-4 text-sm font-medium text-gray-600">
-          Confirm Password
-        </label>
+      </div>
+      <div className="mb-6">
+        <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
         <input
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={handleChangeConfirmPassword}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="Confirm password"
         />
-        {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-        <button
-          type="submit"
-          className="mt-4 w-full bg-blue-500 font-semibold text-white p-2 rounded-md hover:bg-blue-600"
-        >
-          Set Password
-        </button>
-      </form>
-    </div>
+      </div>
+      {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
+      <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Submit
+      </button>
+    </form>
+  </div>
   );
 };
 
