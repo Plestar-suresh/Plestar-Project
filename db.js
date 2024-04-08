@@ -32,7 +32,7 @@ function select(tableName, columns = ['*'], whereCondition = '', values = [], gr
 
   db1.query(query, values, (error, results) => {
     if (error) {
-      callback(error, null);
+      callback(error, null); 
     } else {
       callback(null, results);
     }
