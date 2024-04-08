@@ -38,12 +38,12 @@ const SignupPage = () => {
       return;
     }else{
       try {
-        const response = await axios.post('http://localhost:3500/set_password', formData);
+        const response = await axios.post('http://localhost:3500/signup', formData);
         if(response.data.response=="success"){
           console.log(response.data.message);
           localStorage.setItem("Id",response.data.data.id);
           localStorage.setItem("EmployeeId",response.data.data.employeeid);
-          window.location.href = '/';
+          window.location.href = '/login';
         }else{
           console.log('Error:', response.data.message);
         

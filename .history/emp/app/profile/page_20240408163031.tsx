@@ -43,7 +43,7 @@ const SignupPage = () => {
           console.log(response.data.message);
           localStorage.setItem("Id",response.data.data.id);
           localStorage.setItem("EmployeeId",response.data.data.employeeid);
-          window.location.href = '/';
+          window.location.href = '/login';
         }else{
           console.log('Error:', response.data.message);
         
