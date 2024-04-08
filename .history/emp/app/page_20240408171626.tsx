@@ -20,13 +20,13 @@ export default function Home({}) {
     event.preventDefault()
  
     const formData = new FormData(event.currentTarget)
-    const employeeid = formData.get('employeeid')
+    const empolyeeid = formData.get('employeeid')
     const password = formData.get('password')
  
     const response = await fetch('http://localhost:3500/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ employeeid, password }),
+      body: JSON.stringify({ empolyeeid, password }),
     })
  
     if (response.ok) {
@@ -64,7 +64,7 @@ export default function Home({}) {
           </label>
           <input
             type="text"
-            id="employeeid"
+            id="empid"
             name="employeeid"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             value={formData.employeeid} onChange={handleChange}
