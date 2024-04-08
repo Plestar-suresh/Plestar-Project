@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const db1 = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'root',
   database: 'plestar_inc'
 });
 db1.connect(function(err) {
@@ -12,7 +12,7 @@ db1.connect(function(err) {
     return;
   }
   console.log('Connected to MySQL database successfully!');
-});
+}); 
 
 db1.on('error', function(err) {
   console.error('MySQL connection error:', err.message);
