@@ -6,6 +6,17 @@ const db1 = mysql.createConnection({
   password: '',
   database: 'plestar_inc'
 });
+db1.connect(function(err) {
+  if (err) {
+    console.error('Error connecting to database:', err.message);
+    return;
+  }
+  console.log('Connected to MySQL database successfully!');
+});
+
+db1.on('error', function(err) {
+  console.error('MySQL connection error:', err.message);
+});
 
 function select(tableName, columns = ['*'], whereCondition = '', values = [], groupBy = '', orderBy = '', callback) {
   let query = `SELECT ${columns.join(', ')} FROM ${tableName}`;
