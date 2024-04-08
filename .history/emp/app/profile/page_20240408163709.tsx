@@ -68,44 +68,30 @@ const SignupPage = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <form className="w-96" onSubmit={handleSubmit}>
-        <a className="flex flex-wrap content-center justify-center">
-          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
-        </a>
-
-        <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
-          Password
-        </label>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
           name="password"
-          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChangePassword}
         />
-
-        <label htmlFor="confirmPassword" className="block mt-4 text-sm font-medium text-gray-600">
-          Confirm Password
-        </label>
+      </div>
+      <div>
+        <label htmlFor="confirmPassword">Confirm Password:</label>
         <input
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={handleChangeConfirmPassword}
         />
-        {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-        <button
-          type="submit"
-          className="mt-4 w-full bg-blue-500 font-semibold text-white p-2 rounded-md hover:bg-blue-600"
-        >
-          Set Password
-        </button>
-      </form>
-    </div>
+      </div>
+      {passwordError && <p>{passwordError}</p>}
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
