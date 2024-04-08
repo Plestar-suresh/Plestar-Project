@@ -33,7 +33,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '95vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
         <form className="w-96" onSubmit={handleSubmit}>
           <a className="flex flex-wrap content-center justify-center">
             <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
