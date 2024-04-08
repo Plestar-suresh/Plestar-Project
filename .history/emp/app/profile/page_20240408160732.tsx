@@ -2,7 +2,7 @@
 import {ChangeEvent, useState } from 'react';
 import { FormEvent } from 'react'
 
-//localStorage.getItem("EmployeeId")
+
 const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,7 +37,7 @@ const SignupPage = () => {
           type="password"
           id="password"
           name="password"
-          value={password}
+          value={localStorage.getItem("EmployeeId")}
           onChange={handleChangePassword}
         />
       </div>
