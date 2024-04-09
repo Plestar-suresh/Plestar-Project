@@ -26,7 +26,7 @@ app.post('/signup',(req, res) => {
                 res.status(200).json({response : 'error', data : [], message : "Error, try again"});
             } else {
                 if (checkResult.length > 0) {
-                  res.status(200).json({response : 'error', data : [checkResult], message : "Employee with same mobile number is already exists"}); 
+                  res.status(200).json({response : 'error', data : [checkResult], message : "Employee with same mobile number or employee id is already exists"}); 
                 } else {
                     insert('employees', ['fullname', 'employeeid', 'mobileno'], [fullname, employeeid, mobileno], (insertErr, insertResult) => {
                         if (insertErr) {
@@ -45,6 +45,7 @@ app.post('/signup',(req, res) => {
 });
 app.post('/set_password', (req, res) => {
     const {password, id, employeeid} = req.body;
+    //console.log(req.body);
     if(password && id && employeeid){
         const saltRounds = 10;
         bcrypt.genSalt(saltRounds, function(err, salt) {
