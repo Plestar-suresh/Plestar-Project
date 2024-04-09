@@ -18,16 +18,11 @@ export default function Home({}) {
   const [error, setError] = useState('');
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    
+ 
     const formData = new FormData(event.currentTarget)
     const employeeid = formData.get('employeeid')
     const password = formData.get('password')
-    if (!employeeid || !password) {
-      setError('Employee ID and Password cannot be empty');
-      return;
-    } else {
-      setError('');
-    }
+ 
     const response = await fetch('http://localhost:3500/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -51,7 +46,6 @@ export default function Home({}) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setError('');
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
