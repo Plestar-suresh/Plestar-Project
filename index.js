@@ -40,7 +40,7 @@ app.post('/signup',(req, res) => {
             }
         });
     }else{
-        res.status(200).json({response : 'error', data : [], message : "Give values can't be empty"});
+        res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
     }
 });
 app.post('/set_password', (req, res) => {
@@ -72,7 +72,7 @@ app.post('/set_password', (req, res) => {
             });
         });
     }else{
-        res.status(200).json({response : 'error', data : [], message : "Give values can't be empty"});
+        res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
     }
 });
 app.post('/login', (req, res) => {
@@ -103,6 +103,6 @@ app.post('/login', (req, res) => {
             }
         }); 
     }else{
-        res.status(200).json({response : 'error', data : [], message : "Give values can't be empty"});
+        res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
     }
 });
