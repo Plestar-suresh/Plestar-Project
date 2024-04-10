@@ -1,5 +1,5 @@
 "use client"
-import React, {ChangeEvent, useState, useEffect } from "react";
+import React, {ChangeEvent, useState } from "react";
 import {Provider, useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 //import { toggleModal } from "@/redux/slice";
@@ -16,15 +16,6 @@ export default function Home({}) {
     password: '',
   });
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    var id = window.sessionStorage.getItem("LoginedId");
-    if (id) {
-      alert("Logined")
-      //window.location.href="/"
-    }
-  }, []); 
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     

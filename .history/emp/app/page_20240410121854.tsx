@@ -16,12 +16,11 @@ export default function Home({}) {
     password: '',
   });
   const [error, setError] = useState('');
-
+  
   useEffect(() => {
     var id = window.sessionStorage.getItem("LoginedId");
-    if (id) {
-      alert("Logined")
-      //window.location.href="/"
+    if (!id) {
+      window.location.href="/signup"
     }
   }, []); 
 

@@ -19,9 +19,9 @@ export default function Home({}) {
 
   useEffect(() => {
     var id = window.sessionStorage.getItem("LoginedId");
-    if (id) {
+    if (!id) {
+      window.location.href="/"
       alert("Logined")
-      //window.location.href="/"
     }
   }, []); 
 
