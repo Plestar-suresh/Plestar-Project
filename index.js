@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'POST');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next(); 
+    next();
   });
 httpServer.listen(3500, () => {
     console.log('HTTP server is running on port 3500');

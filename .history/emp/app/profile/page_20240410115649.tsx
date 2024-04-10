@@ -18,7 +18,7 @@ const SignupPage = () => {
   });
 
   useEffect(() => {
-    var id = window.sessionStorage.getItem("Id");
+    var id = window.sessionStorage.get("Id");
     if (!id) {
       // Redirect to login page if id does not exist in localStorage
       window.location.href="/signup"
