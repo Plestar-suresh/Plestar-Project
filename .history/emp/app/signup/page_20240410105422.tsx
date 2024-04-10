@@ -3,6 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import {ChangeEvent, useState } from 'react';
 import { FormEvent } from 'react';
+import Cookies from 'js-cookie';
 type FormData = {
   fullname: string;
   employeeid: string;
@@ -56,8 +57,8 @@ const SignupPage = () => {
       const response = await axios.post('http://localhost:3500/signup', formData);
       if(response.data.response=="success"){
         console.log('Signup successful:', response.data.data.id);
-        window.sessionStorage.setItem("Id", response.data.data.id);
-        window.sessionStorage.setItem("EmployeeId", response.data.data.employeeid);
+        Cookies.set("Id", response.data.data.id, { secure: true, sameSite: 'strict' });
+        Cookies.set("EmployeeId", response.data.data.employeeid, { secure: true, sameSite: 'strict' });
         window.location.href = '/profile';
       }else{
         console.log('Error:', response.data.message);

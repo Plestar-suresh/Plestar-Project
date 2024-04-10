@@ -18,7 +18,7 @@ const SignupPage = () => {
   });
 
   useEffect(() => {
-    var id = window.sessionStorage.getItem("Id");
+    var id = Cookies.get("Id");
     if (!id) {
       // Redirect to login page if id does not exist in localStorage
       window.location.href="/signup"
@@ -27,13 +27,13 @@ const SignupPage = () => {
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    const empId =window.sessionStorage.getItem("EmployeeId");
-        const id = window.sessionStorage.getItem("Id");
+    const empId =Cookies.get("EmployeeId");
+        const id = Cookies.get("Id");
         setFormData((prevData) => ({
           ...prevData,
           password: password,
-          employeeid: empId ? empId : '',
-          id: id ? id : ''
+          employeeid: empId ? JSON.parse(empId) : '',
+          id: id ? JSON.parse(id) : ''
         }));
     setPasswordError('');
     setError('');
@@ -65,8 +65,8 @@ const SignupPage = () => {
         const response = await axios.post('http://localhost:3500/set_password', formData);
         if(response.data.response=="success"){
           console.log(response.data.message);
-          window.sessionStorage.removeItem("Id");
-          window.sessionStorage.removeItem("EmployeeId");
+          Cookies.remove("Id");
+          Cookies.remove("EmployeeId");
           window.location.href = '/';
         }else{
           console.log('Error:', response.data.message);

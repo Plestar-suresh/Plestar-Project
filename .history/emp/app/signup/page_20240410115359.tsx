@@ -56,8 +56,8 @@ const SignupPage = () => {
       const response = await axios.post('http://localhost:3500/signup', formData);
       if(response.data.response=="success"){
         console.log('Signup successful:', response.data.data.id);
-        window.sessionStorage.setItem("Id", response.data.data.id);
-        window.sessionStorage.setItem("EmployeeId", response.data.data.employeeid);
+        window.sessionStorage.set("Id", response.data.data.id);
+        window.sessionStorage.set("EmployeeId", response.data.data.employeeid);
         window.location.href = '/profile';
       }else{
         console.log('Error:', response.data.message);
