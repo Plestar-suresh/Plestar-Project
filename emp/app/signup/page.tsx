@@ -58,7 +58,7 @@ const SignupPage = () => {
         console.log('Signup successful:', response.data.data.id);
         window.sessionStorage.setItem("Id", response.data.data.id);
         window.sessionStorage.setItem("EmployeeId", response.data.data.employeeid);
-        window.location.href = '/profile';
+        window.location.href = '/setpassword';
       }else{
         console.log('Error:', response.data.message);
         setError(response.data.message);

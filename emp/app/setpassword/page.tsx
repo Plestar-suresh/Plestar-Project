@@ -2,7 +2,7 @@
 import {ChangeEvent, useState, useEffect } from 'react';
 import { FormEvent } from 'react'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 //localStorage.getItem("EmployeeId")
 const SignupPage = () => {
