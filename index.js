@@ -93,7 +93,7 @@ app.post('/login', (req, res) => {
                     }
                     if (result) {
                         console.log('Password matched!');
-                        res.status(200).json({response : 'success', data : {'id':checkEmployeeResult[0].id,'employeeid':employeeid}, message : "Employee details are correct."});
+                        res.status(200).json({response : 'success', data : {'id':checkEmployeeResult[0].id,'employeeid':employeeid, 'profilefilled':checkEmployeeResult[0].email?true:false}, message : "Employee details are correct."});
                     } else {
                         console.log('Password incorrect!');
                         res.status(200).json({response : 'error', data : [], message : "Password is incorrect."});
@@ -103,6 +103,46 @@ app.post('/login', (req, res) => {
                 res.status(200).json({response : 'error', data : [], message : "Employee id is incorrect."});
             }
         }); 
+    }else{
+        res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
+    }
+});
+app.post('/getProfile', (req, res) => {
+    const {employeeid,id}=req.body;
+    if(employeeid && id){
+        var value=[employeeid, id];
+        select('employees', ['*'], 'employeeid=? and id=?',  value, "", "",(checkEmployeeErr, checkEmployeeResult) => {
+            if (checkEmployeeErr) {
+                console.error('Error checking employee details:', checkEmployeeErr); 
+                res.status(200).json({response : 'error', data : [], message : "Error in checking employee details, Try again."});
+            }
+            if (checkEmployeeResult.length > 0) {
+                console.log('Employee details are getting successfully');
+                res.status(200).json({response : 'success', data : checkEmployeeResult, message : "Employee details are getting successfully."});
+            }else{
+                res.status(200).json({response : 'error', data : [], message : "Employee id is incorrect."});
+            }
+        }); 
+    }else{
+        res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
+    }
+});
+app.post('/updateProfile', (req, res) => {
+    const {id, employeeid, fullname, mobileno, email, address, gender} = req.body;
+    //console.log(req.body);
+    if(id && employeeid && fullname && mobileno && email && address && gender){  
+        update('employees', {'fullname': fullname,'mobileno':mobileno, 'email':email, 'address':address, 'gender':gender}, 'employeeid = ? and id=?', [employeeid, id],  (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error(updateErr);
+                res.status(200).json({response : 'error', data : [], message : "Error in updating profile, Try again."});
+            }else if(updateResult.affectedRows){
+                console.log('Password has been updated successfully');
+                res.status(200).json({response : 'success', data : {'id':id,'employeeid':employeeid}, message : "Profile has been updated successfully"});
+            }else{
+                console.log(updateResult);
+                res.status(200).json({response : 'error', data : [], message : "Employee id is incorrect."});
+            }
+        });
     }else{
         res.status(200).json({response : 'error', data : [], message : "Values can't be empty"});
     }

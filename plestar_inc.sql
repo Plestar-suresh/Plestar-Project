@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 12:27 PM
+-- Host: localhost
+-- Generation Time: Apr 11, 2024 at 11:42 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,9 @@ CREATE TABLE `employees` (
   `password` varchar(500) NOT NULL DEFAULT '',
   `employeeid` varchar(300) NOT NULL DEFAULT '',
   `mobileno` varchar(50) NOT NULL,
+  `email` varchar(300) NOT NULL DEFAULT '',
+  `address` varchar(800) NOT NULL DEFAULT '',
+  `gender` varchar(30) NOT NULL DEFAULT '',
   `created_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,8 +43,10 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `fullname`, `password`, `employeeid`, `mobileno`, `created_date`) VALUES
-(2, 'Suresh', '$2b$10$FJP5qgvU6pl7p6RBTFWfpefc2RaYRi36TrTOccnZLG3C/GI1rpDPm', '123', '1234567899', '2024-04-02');
+INSERT INTO `employees` (`id`, `fullname`, `password`, `employeeid`, `mobileno`, `email`, `address`, `gender`, `created_date`) VALUES
+(23, 'Sureshkumar', '$2b$10$apLjGNnb87WCGtS8BfKd0uObRGcSQ6tFQ83wanDpoaZLuKoWcLWw6', '123', '8148442357', '', '', '', '2024-04-10'),
+(24, 'sdfasd', '$2b$10$dNyXSQX3uYNnuqGSJFfZ/etGF/9/0HgrH4ti00tE3WSS4V0T8FBTa', '1234', '234213', '', '', '', '2024-04-10'),
+(25, 'Sureshkumar', '$2b$10$qw3pudPx4/zPy5nDrxwQlOuInvBZwHaT.DSEuXHbjhaRPYJW4Hm.2', '2312', '234123', '', '', '', '2024-04-10');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +66,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
