@@ -12,6 +12,19 @@ const ProfilePage = () => {
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState('');
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    // Allow only numeric values
+    const value = e.target.value.replace(/\D/g, '');
+
+    setGender(e.target.value);
+
+    // Limit input to 10 digits
+    if (value.length <= 10) {
+      setMobile(value);
+    }
+  };
+
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission (e.g., update user information)
@@ -32,60 +45,64 @@ const ProfilePage = () => {
             id="empname"
             name="empname"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.employeeid} onChange={handleChange} */
+            value={name} onChange={handleChange}
           />
 
           <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
             Employee ID
           </label>
           <input
-            type="text"
+            type="number"
             id="employeeid"
             name="employeeid"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.employeeid} onChange={handleChange} */
+            value={employeeId} onChange={handleChange}
           />
 
-          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="mobile" className="block mt-4 text-sm font-medium text-gray-600">
             Mobile
           </label>
           <input
-            type="text"
-            id="employeeid"
-            name="employeeid"
+            type="number"
+            id="empmobile"
+            name="empmobile"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.employeeid} onChange={handleChange} */
+            value={mobile} onChange={handleChange} maxLength={10} 
           />
 
-          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="email" className="block mt-4 text-sm font-medium text-gray-600">
             Email
           </label>
           <input
-            type="text"
-            id="employeeid"
-            name="employeeid"
+            type="email"
+            id="email"
+            name="email"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.employeeid} onChange={handleChange} */
+            value={email} onChange={handleChange}
           />
 
           <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
             Gender
           </label>
-          <input
-            type="text"
-            id="employeeid"
-            name="employeeid"
+          <select
+            id="gender"
+            name="gender"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.employeeid} onChange={handleChange} */
-          />
+            value={gender}
+            onChange={handleChange}
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
 
-          <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="address" className="block mt-4 text-sm font-medium text-gray-600">
             Address
           </label>
           <input
-            type="password"
-            id="password"
-            name="password"
+            type="textarea"
+            id="address"
+            name="address"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             /* value={formData.password} onChange={handleChange} */
           />
