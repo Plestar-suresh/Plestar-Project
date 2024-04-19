@@ -18,39 +18,87 @@ const ProfilePage = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <h1>Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="employeeId">Employee ID:</label>
-          <input type="text" id="employeeId" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="mobile">Mobile:</label>
-          <input type="text" id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="gender">Gender:</label>
-          <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <textarea id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        </div>
-        <button type="submit">Update Profile</button>
-      </form>
-    </div>
+    <>
+      <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+        <form className="w-96" onSubmit={handleSubmit}>
+          <a className="flex flex-wrap content-center justify-center">
+            <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
+          </a>
+          <label htmlFor="name" className="block mt-4 text-sm font-medium text-gray-600">
+            Name
+          </label>
+          <input
+            type="text"
+            id="empname"
+            name="empname"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.employeeid} onChange={handleChange} */
+          />
+
+          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+            Employee ID
+          </label>
+          <input
+            type="text"
+            id="employeeid"
+            name="employeeid"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.employeeid} onChange={handleChange} */
+          />
+
+          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+            Mobile
+          </label>
+          <input
+            type="text"
+            id="employeeid"
+            name="employeeid"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.employeeid} onChange={handleChange} */
+          />
+
+          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+            Email
+          </label>
+          <input
+            type="text"
+            id="employeeid"
+            name="employeeid"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.employeeid} onChange={handleChange} */
+          />
+
+          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+            Gender
+          </label>
+          <input
+            type="text"
+            id="employeeid"
+            name="employeeid"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.employeeid} onChange={handleChange} */
+          />
+
+          <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
+            Address
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            /* value={formData.password} onChange={handleChange} */
+          />
+          {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
+          <button
+            type="submit"
+            className="mt-4 w-full bg-blue-500 font-semibold text-white p-2 rounded-md hover:bg-blue-600"
+          >
+            Update Profile
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
