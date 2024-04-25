@@ -4,13 +4,28 @@ import { FormEvent } from 'react'
 import axios from 'axios';
 
 
-const ProfilePage = () => {
+const UpdateProfile = () => {
   const [name, setName] = useState('');
   const [employeeId, setEmployeeId] = useState('');
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState('');
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3500/updateProfile');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means the effect runs once after the component mounts
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     // Allow only numeric values
@@ -119,4 +134,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default UpdateProfile;
