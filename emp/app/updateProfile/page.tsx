@@ -16,7 +16,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3500/updateProfile');
+        const response = await axios.get('http://localhost:3500/getProfile');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
