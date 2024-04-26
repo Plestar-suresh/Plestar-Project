@@ -11,14 +11,20 @@ const UpdateProfile = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState('');
-  const [data, setData] = useState(null);
+  //const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post('http://localhost:3500/getProfile',{'employeeid':window.sessionStorage.getItem("LoginedEmployeeId"), 'id':window.sessionStorage.getItem("LoginedId")});
         console.log(response.data);
-        setData(response.data);
+        //setData(response.data);
+        if (response.data && response.data.response === 'success') {
+          setName(response.data.data[0].fullname);
+          setEmployeeId(response.data.data[0].employeeid);
+          setMobile(response.data.data[0].mobile);
+        }
+        
       } catch (error) {
         console.error('Error get profile:', error);
       }
@@ -27,17 +33,14 @@ const UpdateProfile = () => {
     fetchData();
   }, []); // Empty dependency array means the effect runs once after the component mounts
 
+  
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     // Allow only numeric values
-    const value = e.target.value.replace(/\D/g, '');
+    /* const value = e.target.value.replace(/\D/g, '');
 
-    setGender(e.target.value);
+    setGender(e.target.value); */
 
-    // Limit input to 10 digits
-    if (value.length <= 10) {
-      setMobile(value);
-    }
   };
 
 
@@ -53,7 +56,7 @@ const UpdateProfile = () => {
           <a className="flex flex-wrap content-center justify-center">
             <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
           </a>
-          <label htmlFor="name" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="empname" className="block mt-4 text-sm font-medium text-gray-600">
             Name
           </label>
           <input
@@ -61,10 +64,10 @@ const UpdateProfile = () => {
             id="empname"
             name="empname"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={name} onChange={handleChange}
+            value={name}
           />
 
-          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="employeeid" className="block mt-4 text-sm font-medium text-gray-600">
             Employee ID
           </label>
           <input
@@ -72,10 +75,10 @@ const UpdateProfile = () => {
             id="employeeid"
             name="employeeid"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={employeeId} onChange={handleChange}
+            value={employeeId} readOnly
           />
 
-          <label htmlFor="mobile" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="empmobile" className="block mt-4 text-sm font-medium text-gray-600">
             Mobile
           </label>
           <input
@@ -97,7 +100,7 @@ const UpdateProfile = () => {
             value={email} onChange={handleChange}
           />
 
-          <label htmlFor="employeeId" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="gender" className="block mt-4 text-sm font-medium text-gray-600">
             Gender
           </label>
           <select
