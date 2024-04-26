@@ -133,7 +133,7 @@ app.post('/updateProfile', (req, res) => {
     if(id && employeeid && fullname && mobileno && email && address && gender){  
         update('employees', {'fullname': fullname,'mobileno':mobileno, 'email':email, 'address':address, 'gender':gender}, 'employeeid = ? and id=?', [employeeid, id],  (updateErr, updateResult) => {
             if (updateErr) {
-                console.error(updateErr);
+                console.error(updateErr); 
                 res.status(200).json({response : 'error', data : [], message : "Error in updating profile, Try again."});
             }else if(updateResult.affectedRows){
                 console.log('Password has been updated successfully');
