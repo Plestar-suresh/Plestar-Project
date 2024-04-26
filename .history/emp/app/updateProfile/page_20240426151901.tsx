@@ -16,8 +16,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('http://localhost:3500/getProfile',{'employeeid':window.sessionStorage.getItem("LoginedEmployeeId"), 'id':window.sessionStorage.getItem("LoginedId")});
-        console.log(response.data);
+        const response = await axios.get('http://localhost:3500/getProfile');
         setData(response.data);
       } catch (error) {
         console.error('Error get profile:', error);

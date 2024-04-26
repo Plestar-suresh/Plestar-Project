@@ -17,7 +17,6 @@ const UpdateProfile = () => {
     const fetchData = async () => {
       try {
         const response = await axios.post('http://localhost:3500/getProfile',{'employeeid':window.sessionStorage.getItem("LoginedEmployeeId"), 'id':window.sessionStorage.getItem("LoginedId")});
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error('Error get profile:', error);
