@@ -19,7 +19,7 @@ const UpdateProfile = () => {
         const response = await axios.get('http://localhost:3500/getProfile');
         setData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error get profile:', error);
       }
     };
 
