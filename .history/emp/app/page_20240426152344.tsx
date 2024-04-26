@@ -18,10 +18,10 @@ export default function Home({}) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    /*var id = window.sessionStorage.getItem("LoginedId");
+    var id = window.sessionStorage.getItem("LoginedId");
     if (id) {
       window.location.href="/updateProfile"
-    }*/
+    }
   }, []); 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -48,11 +48,7 @@ export default function Home({}) {
         // Employee details are correct
         window.sessionStorage.setItem("LoginedId",data.data.id);
         window.sessionStorage.setItem("LoginedEmployeeId",data.data.employeeid);
-        if(!data.data.profilefilled){
-          window.location.href="/updateProfile"
-        }else{
-          
-        }
+        alert(data.message);
         // Redirect or perform further actions
       } else {
         // Error occurred

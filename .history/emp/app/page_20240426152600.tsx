@@ -50,8 +50,6 @@ export default function Home({}) {
         window.sessionStorage.setItem("LoginedEmployeeId",data.data.employeeid);
         if(!data.data.profilefilled){
           window.location.href="/updateProfile"
-        }else{
-          
         }
         // Redirect or perform further actions
       } else {
