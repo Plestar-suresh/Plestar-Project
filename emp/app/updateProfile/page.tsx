@@ -8,21 +8,27 @@ const UpdateProfile = () => {
   const [name, setName] = useState('');
   const [employeeId, setEmployeeId] = useState('');
   const [mobile, setMobile] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
-  const [address, setAddress] = useState('');
   //const [data, setData] = useState(null);
+  const [profileData, setProfileData] = useState({
+    fullname: '',
+    employeeid: '',
+    mobileno: '',
+    email: '',
+    gender: '',
+    address: ''
+  });
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post('http://localhost:3500/getProfile',{'employeeid':window.sessionStorage.getItem("LoginedEmployeeId"), 'id':window.sessionStorage.getItem("LoginedId")});
-        console.log(response.data);
+        //console.log(response.data);
         //setData(response.data);
         if (response.data && response.data.response === 'success') {
           setName(response.data.data[0].fullname);
           setEmployeeId(response.data.data[0].employeeid);
-          setMobile(response.data.data[0].mobile);
+          setMobile(response.data.data[0].mobileno);
         }
         
       } catch (error) {
@@ -36,17 +42,30 @@ const UpdateProfile = () => {
   
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
-    // Allow only numeric values
-    /* const value = e.target.value.replace(/\D/g, '');
-
-    setGender(e.target.value); */
-
+    const { name, value } = e.target;
+    setProfileData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission (e.g., update user information)
+    
+    try {
+      const response = await axios.post('http://localhost:3500/updateProfile', profileData); // Adjust the API endpoint as per your backend route
+      if(response.data.response=="success"){
+        console.log('updated successful:', response.data.data.id);
+        /* window.sessionStorage.setItem("Id", response.data.data.id);
+        window.sessionStorage.setItem("EmployeeId", response.data.data.employeeid); */
+        window.location.href = '/account';
+      }else{
+        console.log('Error:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
 
   return (
@@ -64,7 +83,7 @@ const UpdateProfile = () => {
             id="empname"
             name="empname"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={name}
+            value={name} readOnly onChange={handleChange}
           />
 
           <label htmlFor="employeeid" className="block mt-4 text-sm font-medium text-gray-600">
@@ -75,7 +94,7 @@ const UpdateProfile = () => {
             id="employeeid"
             name="employeeid"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={employeeId} readOnly
+            value={employeeId} readOnly onChange={handleChange}
           />
 
           <label htmlFor="empmobile" className="block mt-4 text-sm font-medium text-gray-600">
@@ -97,7 +116,7 @@ const UpdateProfile = () => {
             id="email"
             name="email"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={email} onChange={handleChange}
+            value={profileData.email} onChange={handleChange}
           />
 
           <label htmlFor="gender" className="block mt-4 text-sm font-medium text-gray-600">
@@ -107,7 +126,7 @@ const UpdateProfile = () => {
             id="gender"
             name="gender"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={gender}
+            value={profileData.gender}
             onChange={handleChange}
           >
             <option value="">Select Gender</option>
@@ -123,7 +142,7 @@ const UpdateProfile = () => {
             id="address"
             name="address"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            /* value={formData.password} onChange={handleChange} */
+            value={profileData.address} onChange={handleChange}
           />
           {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
           <button
