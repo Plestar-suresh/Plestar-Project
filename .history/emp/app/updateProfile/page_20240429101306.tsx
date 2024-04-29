@@ -5,6 +5,9 @@ import axios from 'axios';
 
 
 const UpdateProfile = () => {
+  const [name, setName] = useState('');
+  const [employeeId, setEmployeeId] = useState('');
+  const [mobile, setMobile] = useState('');
   //const [data, setData] = useState(null);
   const [profileData, setProfileData] = useState({
     id: window.sessionStorage.getItem("LoginedId"),
@@ -24,12 +27,9 @@ const UpdateProfile = () => {
         //console.log(response.data);
         //setData(response.data);
         if (response.data && response.data.response === 'success') {
-          setProfileData({
-            ...profileData,
-            fullname : response.data.data[0].fullname,
-            employeeid : response.data.data[0].employeeid,
-            mobileno : response.data.data[0].mobileno,
-          });
+          setName(response.data.data[0].fullname);
+          setEmployeeId(response.data.data[0].employeeid);
+          setMobile(response.data.data[0].mobileno);
         }
         
       } catch (error) {
@@ -76,15 +76,15 @@ const UpdateProfile = () => {
           <a className="flex flex-wrap content-center justify-center">
             <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
           </a>
-          <label htmlFor="fullname" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="empname" className="block mt-4 text-sm font-medium text-gray-600">
             Name
           </label>
           <input
             type="text"
-            id="fullname"
+            id="empname"
             name="fullname"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={profileData.fullname} readOnly onChange={handleChange}
+            value={name} readOnly onChange={handleChange}
           />
 
           <label htmlFor="employeeid" className="block mt-4 text-sm font-medium text-gray-600">
@@ -95,18 +95,18 @@ const UpdateProfile = () => {
             id="employeeid"
             name="employeeid"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={profileData.employeeid} readOnly onChange={handleChange}
+            value={employeeId} readOnly onChange={handleChange}
           />
 
-          <label htmlFor="mobileno" className="block mt-4 text-sm font-medium text-gray-600">
+          <label htmlFor="empmobile" className="block mt-4 text-sm font-medium text-gray-600">
             Mobile
           </label>
           <input
             type="number"
-            id="mobileno"
+            id="empmobile"
             name="mobileno"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={profileData.mobileno} onChange={handleChange} maxLength={10} 
+            value={mobile} onChange={handleChange} maxLength={10} 
           />
 
           <label htmlFor="email" className="block mt-4 text-sm font-medium text-gray-600">
