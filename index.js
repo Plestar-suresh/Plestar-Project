@@ -83,7 +83,7 @@ app.post('/login', (req, res) => {
         select('employees', ['*'], 'employeeid=?',  value, "", "",(checkEmployeeErr, checkEmployeeResult) => {
             if (checkEmployeeErr) {
                 console.error('Error checking employee details:', checkEmployeeErr); 
-                res.status(200).json({response : 'error', data : [], message : "Error in checking employee details, Try again."});
+                res.status(200).json({response : 'error', data : [], message : "Error in checking employee details, Try again."}); 
             }
             if (checkEmployeeResult.length > 0) {
                bcrypt.compare( password, checkEmployeeResult[0].password, function(err, result) {
