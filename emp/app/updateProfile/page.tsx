@@ -3,9 +3,20 @@ import {ChangeEvent, useState, useEffect } from 'react';
 import { FormEvent } from 'react'
 import axios from 'axios';
 
+type ProfileData = {
+  fullname: string;
+  employeeid: string;
+  mobileno: string;
+};
+
+type Errors = {
+  email: string;
+  gender: string;
+  address: string;
+};
 
 const UpdateProfile = () => {
-  //const [data, setData] = useState(null);
+  const [Error, setError] = useState('');
   const [profileData, setProfileData] = useState({
     id: window.sessionStorage.getItem("LoginedId"),
     fullname: '',
@@ -16,13 +27,17 @@ const UpdateProfile = () => {
     address: ''
   });
 
+  const [errors, setErrors] = useState({
+    email: '',
+    gender: '',
+    address: ''
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post('http://localhost:3500/getProfile',{'employeeid':window.sessionStorage.getItem("LoginedEmployeeId"), 'id':window.sessionStorage.getItem("LoginedId")});
-        //console.log(response.data);
-        //setData(response.data);
+        
         if (response.data && response.data.response === 'success') {
           setProfileData({
             ...profileData,
@@ -48,18 +63,33 @@ const UpdateProfile = () => {
       ...prevData,
       [name]: value
     }));
-  };
 
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: value.trim() === '' ? `${name} is required` : '',
+    }));
+    setError('');
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+    let hasError = false;
+    const newErrors = { ...errors };
+    Object.keys(profileData).forEach((key) => {
+      if (profileData[key as keyof ProfileData].trim() === '') {
+        newErrors[key as keyof Errors] = `${key} is required`;
+        hasError = true;
+      }
+    });
+    if (hasError) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:3500/updateProfile', profileData); // Adjust the API endpoint as per your backend route
       if(response.data.response=="success"){
         console.log('updated successful:', response.data.data.id);
-        /* window.sessionStorage.setItem("Id", response.data.data.id);
-        window.sessionStorage.setItem("EmployeeId", response.data.data.employeeid); */
         window.location.href = '/account';
       }else{
         console.log('Error:', response.data.message);
@@ -106,7 +136,7 @@ const UpdateProfile = () => {
             id="mobileno"
             name="mobileno"
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            value={profileData.mobileno} onChange={handleChange} maxLength={10} 
+            value={profileData.mobileno} readOnly onChange={handleChange} maxLength={10} 
           />
 
           <label htmlFor="email" className="block mt-4 text-sm font-medium text-gray-600">
@@ -119,6 +149,7 @@ const UpdateProfile = () => {
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             value={profileData.email} onChange={handleChange}
           />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
 
           <label htmlFor="gender" className="block mt-4 text-sm font-medium text-gray-600">
             Gender
@@ -134,6 +165,7 @@ const UpdateProfile = () => {
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+          {errors.gender && <p className="text-red-500">{errors.gender}</p>}
 
           <label htmlFor="address" className="block mt-4 text-sm font-medium text-gray-600">
             Address
@@ -145,7 +177,7 @@ const UpdateProfile = () => {
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             value={profileData.address} onChange={handleChange}
           />
-          {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
+          {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
           <button
             type="submit"
             className="mt-4 w-full bg-blue-500 font-semibold text-white p-2 rounded-md hover:bg-blue-600"
