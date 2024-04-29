@@ -129,7 +129,7 @@ app.post('/getProfile', (req, res) => {
 });
 app.post('/updateProfile', (req, res) => {
     const {id, employeeid, fullname, mobileno, email, address, gender} = req.body;
-    //console.log(req.body);
+    console.log(req.body);
     if(id && employeeid && fullname && mobileno && email && address && gender){  
         update('employees', {'fullname': fullname,'mobileno':mobileno, 'email':email, 'address':address, 'gender':gender}, 'employeeid = ? and id=?', [employeeid, id],  (updateErr, updateResult) => {
             if (updateErr) {
