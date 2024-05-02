@@ -54,32 +54,6 @@ const LeaveForm = () => {
                 />
             </div>
         </div>
-
-        <label htmlFor="confirmPassword" className="block mt-4 text-sm font-medium text-gray-600">
-          Shift for Permission
-        </label>
-        <select
-            /* value={selectedShift}
-            onChange={(e) => setSelectedShift(e.target.value)} */
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-            >
-            <option value="">Select a shift</option>
-            <option value="Morning">Morning</option>
-            <option value="Afternoon">Afternoon</option>
-            <option value="Night">General</option>
-        </select>
-        {/* {confirmPasswordError && <p className="text-red-500 text-sm">{confirmPasswordError}</p>} */}
-
-        <div className='flex flex-col mt-3'>
-            <div className="flex flex-col mr-4">
-                <label className="block text-sm font-medium text-gray-700">Permission Date:</label>
-                <DatePicker
-                selected={leaveFrom}
-                onChange={(date: Date | null) => setLeaveFrom(date)}
-                className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
-                />
-            </div>
-        </div>
         
         <div className="flex flex-col mt-3">
             <label className="block text-sm font-medium text-gray-700">Reason for Leave:</label>
