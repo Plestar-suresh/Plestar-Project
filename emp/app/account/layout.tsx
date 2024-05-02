@@ -15,10 +15,10 @@ const layout: React.FC<DashboardProps> = ({children}) => {
   return (
     <div>
         <div>
-            <Sidebar/>
+            {/* <Sidebar/> */}
         </div>
         <div>
-            <AdminNavbar/>
+            {/* <AdminNavbar/> */}
             {children}
         </div>
     </div>
