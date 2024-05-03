@@ -8,12 +8,15 @@ const LeaveForm = () => {
   const [leaveFrom, setLeaveFrom] = useState('');
   const [leaveTo, setLeaveTo] = useState('');
   const [reason, setReason] = useState('');
-  const [permissionToday, setPermissionToday] = useState(false);
-  const [permissionTomorrow, setPermissionTomorrow] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
+    alert(234);
   };
 
   return (
@@ -35,16 +38,16 @@ const LeaveForm = () => {
             <div className="flex flex-col mr-4">
                 <label className="block text-sm font-medium text-gray-700">Leave From:</label>
                 <DatePicker
-                selected={leaveFrom}
-                onChange={(date: Date | null) => setLeaveFrom(date)}
+                selected={selectedDate}
+                onChange={handleDateChange}
                 className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
             </div>
             <div className="flex flex-col">
                 <label className="block text-sm font-medium text-gray-700">Leave To:</label>
                 <DatePicker
-                selected={leaveTo}
-                onChange={(date: Date | null) => setLeaveTo(date)}
+                selected={selectedDate}
+                onChange={handleDateChange}
                 className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
             </div>

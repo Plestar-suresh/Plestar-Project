@@ -5,14 +5,15 @@ import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 
 const PermissionForm = () => {
   const [profileName, setProfileName] = useState('');
-  const [leaveFrom, setLeaveFrom] = useState('');
-  const [leaveTo, setLeaveTo] = useState('');
   const [reason, setReason] = useState('');
-  const [permissionToday, setPermissionToday] = useState(false);
-  const [permissionTomorrow, setPermissionTomorrow] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const handleDateChange = (date) => {
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+
+  const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
 
@@ -54,18 +55,25 @@ const PermissionForm = () => {
             <div className="flex flex-col mr-4">
                 <label className="block text-sm font-medium text-gray-700">Date</label>
                 <DatePicker
-                selected={selectedDate ? new Date(selectedDate) : null}
+                selected={selectedDate}
                 onChange={handleDateChange}
                 className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
+                minDate={today}
+                maxDate={tomorrow}
                 />
             </div>
             <div className="flex flex-col">
                 <label className="block text-sm font-medium text-gray-700">Time</label>
-                <DatePicker
-                selected={selectedDate ? new Date(selectedDate) : null}
-                onChange={handleDateChange}
-                className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
-                />
+                <select
+                    /* value={selectedShift}
+                    onChange={(e) => setSelectedShift(e.target.value)} */
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    >
+                    <option value="">Select a Time</option>
+                    <option value="Morning">Morning - 6:30 AM</option>
+                    <option value="Afternoon">Afternoon - 12:30 PM</option>
+                    <option value="Night">Evening - 6:30 PM</option>
+                </select>
             </div>
         </div>
         
