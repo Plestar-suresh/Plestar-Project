@@ -17,12 +17,7 @@ const LeaveForm = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <form className="w-96" onSubmit={handleSubmit}>
-        <a className="flex flex-wrap content-center justify-center">
-          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
-        </a>
-
         <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
           Name
         </label>
@@ -73,7 +68,6 @@ const LeaveForm = () => {
         </button>
         {/* {Error && <p className="text-red-500 text-sm">{Error}</p>} */}
       </form>
-    </div>
   );
 };
 
