@@ -21,7 +21,10 @@ const Leaves = () => {
     };
   return (
     <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      <select onChange={handleDropdownChange}>
+      <a className="flex flex-wrap content-center justify-center">
+          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
+        </a>
+      <select onChange={handleDropdownChange} className="border border-gray-300 rounded-md py-1 px-2">
         <option value="">Select an option</option>
         <option value="leave">Leave Form</option>
         <option value="permission">Permission Form</option>

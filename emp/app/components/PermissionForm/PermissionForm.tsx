@@ -10,6 +10,11 @@ const PermissionForm = () => {
   const [reason, setReason] = useState('');
   const [permissionToday, setPermissionToday] = useState(false);
   const [permissionTomorrow, setPermissionTomorrow] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,19 +22,14 @@ const PermissionForm = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <form className="w-96" onSubmit={handleSubmit}>
-        <a className="flex flex-wrap content-center justify-center">
-          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
-        </a>
-
-        <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
+        <label htmlFor="name" className="block mt-4 text-sm font-medium text-gray-600">
           Name
         </label>
         <input
-          type="password"
-          id="password"
-          name="password"
+          type="text"
+          id="name"
+          name="name"
           className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           /* value={password}
           onChange={handleChangePassword} */
@@ -50,12 +50,20 @@ const PermissionForm = () => {
         </select>
         {/* {confirmPasswordError && <p className="text-red-500 text-sm">{confirmPasswordError}</p>} */}
 
-        <div className='flex flex-col mt-3'>
+        <div className='flex mt-3'>
             <div className="flex flex-col mr-4">
                 <label className="block text-sm font-medium text-gray-700">Date</label>
                 <DatePicker
-                selected={leaveFrom}
-                onChange={(date: Date | null) => setLeaveFrom(date)}
+                selected={selectedDate ? new Date(selectedDate) : null}
+                onChange={handleDateChange}
+                className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+            </div>
+            <div className="flex flex-col">
+                <label className="block text-sm font-medium text-gray-700">Time</label>
+                <DatePicker
+                selected={selectedDate ? new Date(selectedDate) : null}
+                onChange={handleDateChange}
                 className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
                 />
             </div>
@@ -79,7 +87,6 @@ const PermissionForm = () => {
         </button>
         {/* {Error && <p className="text-red-500 text-sm">{Error}</p>} */}
       </form>
-    </div>
   );
 };
 
