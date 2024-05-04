@@ -5,11 +5,17 @@ import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 
 const PermissionForm = () => {
   const [profileName, setProfileName] = useState('');
-  const [leaveFrom, setLeaveFrom] = useState('');
-  const [leaveTo, setLeaveTo] = useState('');
   const [reason, setReason] = useState('');
-  const [permissionToday, setPermissionToday] = useState(false);
-  const [permissionTomorrow, setPermissionTomorrow] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,19 +23,14 @@ const PermissionForm = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }} className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <form className="w-96" onSubmit={handleSubmit}>
-        <a className="flex flex-wrap content-center justify-center">
-          <img className="mb-4" src="https://plestar.net/img/logo.png" alt="logo" />
-        </a>
-
-        <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
+        <label htmlFor="name" className="block mt-4 text-sm font-medium text-gray-600">
           Name
         </label>
         <input
-          type="password"
-          id="password"
-          name="password"
+          type="text"
+          id="name"
+          name="name"
           className="mt-1 p-2 border border-gray-300 rounded-md w-full"
           /* value={password}
           onChange={handleChangePassword} */
@@ -50,14 +51,29 @@ const PermissionForm = () => {
         </select>
         {/* {confirmPasswordError && <p className="text-red-500 text-sm">{confirmPasswordError}</p>} */}
 
-        <div className='flex flex-col mt-3'>
+        <div className='flex mt-3'>
             <div className="flex flex-col mr-4">
                 <label className="block text-sm font-medium text-gray-700">Date</label>
                 <DatePicker
-                selected={leaveFrom}
-                onChange={(date: Date | null) => setLeaveFrom(date)}
+                selected={selectedDate}
+                onChange={handleDateChange}
                 className="input mt-1 p-2 border border-gray-300 rounded-md w-full"
+                minDate={today}
+                maxDate={tomorrow}
                 />
+            </div>
+            <div className="flex flex-col">
+                <label className="block text-sm font-medium text-gray-700">Time</label>
+                <select
+                    /* value={selectedShift}
+                    onChange={(e) => setSelectedShift(e.target.value)} */
+                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    >
+                    <option value="">Select a Time</option>
+                    <option value="Morning">Morning - 6:30 AM</option>
+                    <option value="Afternoon">Afternoon - 12:30 PM</option>
+                    <option value="Night">Evening - 6:30 PM</option>
+                </select>
             </div>
         </div>
         
@@ -79,7 +95,6 @@ const PermissionForm = () => {
         </button>
         {/* {Error && <p className="text-red-500 text-sm">{Error}</p>} */}
       </form>
-    </div>
   );
 };
 
