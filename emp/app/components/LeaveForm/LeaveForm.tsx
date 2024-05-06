@@ -32,7 +32,7 @@ const LeaveForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(234);
+    
   };
 
   return (
