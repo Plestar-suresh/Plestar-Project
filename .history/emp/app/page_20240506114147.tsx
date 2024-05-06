@@ -20,7 +20,7 @@ export default function Home({}) {
   useEffect(() => {
     var id = window.sessionStorage.getItem("LoginedId");
     if (id) {
-      window.location.href="/account"
+      window.location.href="/accounts"
     }
   }, []); 
 
