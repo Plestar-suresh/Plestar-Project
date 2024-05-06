@@ -18,10 +18,17 @@ export default function Home({}) {
   const [error, setError] = useState('');
 
   useEffect(() => {
+<<<<<<< HEAD
     var id = window.sessionStorage.getItem("LoginedId");
     if (id) {
       window.location.href="/account"
     }
+=======
+    /*var id = window.sessionStorage.getItem("LoginedId");
+    if (id) {
+      window.location.href="/updateProfile"
+    }*/
+>>>>>>> 931b0614a4ccb2c91adca57f7d1c5df6f1cce244
   }, []); 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

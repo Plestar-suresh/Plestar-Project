@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { FormEvent, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import axios from 'axios';
+=======
+import React, { FormEvent, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
+
+>>>>>>> 931b0614a4ccb2c91adca57f7d1c5df6f1cce244
 
 const LeaveForm = () => {
   const [profileName, setProfileName] = useState('');
@@ -9,6 +16,7 @@ const LeaveForm = () => {
   const [leaveTo, setLeaveTo] = useState('');
   const [reason, setReason] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+<<<<<<< HEAD
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,6 +33,8 @@ const LeaveForm = () => {
 
     fetchData();
   }, []);
+=======
+>>>>>>> 931b0614a4ccb2c91adca57f7d1c5df6f1cce244
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -37,6 +47,7 @@ const LeaveForm = () => {
 
   return (
       <form className="w-96" onSubmit={handleSubmit}>
+<<<<<<< HEAD
         <label htmlFor="name" className="block mt-4 text-sm font-medium text-gray-600">
           Name
         </label>
@@ -47,6 +58,18 @@ const LeaveForm = () => {
           className="mt-1 p-2 border border-gray-300 rounded-md w-full"
            value={profileName}
           readOnly
+=======
+        <label htmlFor="password" className="block mt-4 text-sm font-medium text-gray-600">
+          Name
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+          /* value={password}
+          onChange={handleChangePassword} */
+>>>>>>> 931b0614a4ccb2c91adca57f7d1c5df6f1cce244
         />
 
         
